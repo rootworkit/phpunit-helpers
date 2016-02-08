@@ -1,0 +1,23 @@
+{
+    "name": "rootwork/phpunit-helpers",
+    "description": "PHPUnit Helpers",
+    "license": "BSD-3-Clause",
+    "keywords": ["rootwork", "phpunit"],
+    "homepage": "https://github.com/rootworkit/phpunit-helpers",
+    "authors": [
+        {
+            "name": "Mike Soule",
+            "email": "mike@rootwork.it"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "phpunit/phpunit": "^5.0"
+    },
+    "autoload": {
+        "psr-4": { "Rootwork\\PHPUnit\\": "src/PHPUnit/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Rootwork\\Test\\": "tests/" }
+    }
+}
