@@ -1,0 +1,32 @@
+<phpunit bootstrap="bootstrap.php" colors="true">
+
+    <!-- setup php constants and settings for testing -->
+    <php>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
+
+    <!-- setup the default test suites -->
+    <testsuites>
+        <testsuite name="All Tests">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- specify which files should be included in code coverage reports -->
+    <filter>
+        <whitelist>
+            <directory suffix="php">../src</directory>
+        </whitelist>
+    </filter>
+
+    <!-- logging for the unit test coverage -->
+    <logging>
+        <log type="coverage-html"
+             target="../build/phpunit"
+             charset="UTF-8"
+             yui="true"
+             highlight="false"
+             lowUpperBound="50"
+             highLowerBound="80" />
+    </logging>
+</phpunit>

@@ -1,0 +1,66 @@
+<?php
+
+namespace Rootwork\PHPUnit\Helper;
+
+use ReflectionMethod;
+use ReflectionProperty;
+
+/**
+ * Accessor helper for efficiently accessing protected/private properties and methods.
+ *
+ * @copyright   Copyright (c) 2015-2016 Rootwork InfoTech LLC (www.rootwork.it)
+ * @license     BSD-3-Clause
+ * @author      Mike Soule <mike@rootwork.it>
+ * @package     Rootwork\PHPUnit\Helper
+ */
+trait Accessor
+{
+
+    /**
+     * Set the value of a non-public property.
+     *
+     * @param object $object
+     * @param string $name
+     * @param mixed $value
+     */
+    public function setPropertyValue($object, $name, $value)
+    {
+        $property = new ReflectionProperty($object, $name);
+        $property->setAccessible(true);
+        $property->setValue($object, $value);
+    }
+
+    /**
+     * Get the value of a non-public property.
+     *
+     * @param object $object
+     * @param string $name
+     * @return mixed
+     */
+    public function getPropertyValue($object, $name)
+    {
+        $property = new ReflectionProperty($object, $name);
+        $property->setAccessible(true);
+        return $property->getValue($object);
+    }
+
+    /**
+     * Invoke a non-public method
+     *
+     * @param object $object
+     * @param string $name
+     * @param array  $args
+     * @return mixed
+     */
+    public function invokeMethod($object, $name, array $args = [])
+    {
+        $method = new ReflectionMethod($object, $name);
+        $method->setAccessible(true);
+
+        if (empty($args)) {
+            return $method->invoke($object);
+        }
+
+        return $method->invokeArgs($object, $args);
+    }
+}
