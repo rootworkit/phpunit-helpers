@@ -4,7 +4,6 @@ namespace Rootwork\Test\PHPUnit\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Rootwork\PHPUnit\Helper\Accessor;
-use Rootwork\Test\PHPUnit\Helper\Fixture;
 
 /**
  * Test case for accessor helper.
