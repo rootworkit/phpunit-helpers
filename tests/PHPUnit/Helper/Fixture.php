@@ -28,6 +28,20 @@ class Fixture
     private $privProperty;
 
     /**
+     * Protected static property.
+     *
+     * @var mixed
+     */
+    protected static $protStaticProperty;
+
+    /**
+     * Private static property.
+     *
+     * @var mixed
+     */
+    private static $privStaticProperty;
+
+    /**
      * @return bool
      */
     protected function protNoArgs()
@@ -61,6 +75,44 @@ class Fixture
      * @return string "Arg1:Arg2"
      */
     private function privWithArgs($arg1, $arg2)
+    {
+        return "$arg1:$arg2";
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function protStaticNoArgs()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    private static function privStaticNoArgs()
+    {
+        return true;
+    }
+
+    /**
+     * @param string $arg1
+     * @param string $arg2
+     *
+     * @return string "Arg1:Arg2"
+     */
+    protected static function protStaticWithArgs($arg1, $arg2)
+    {
+        return "$arg1:$arg2";
+    }
+
+    /**
+     * @param string $arg1
+     * @param string $arg2
+     *
+     * @return string "Arg1:Arg2"
+     */
+    private static function privStaticWithArgs($arg1, $arg2)
     {
         return "$arg1:$arg2";
     }
