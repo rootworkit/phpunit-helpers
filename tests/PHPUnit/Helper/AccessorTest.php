@@ -48,6 +48,21 @@ class AccessorTest extends TestCase
     }
 
     /**
+     * Test setting and getting private and protected static properties.
+     */
+    public function testSetGetStaticPropertyValue()
+    {
+        $this->setStaticPropertyValue('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'protStaticProperty', 'foo');
+        $this->setStaticPropertyValue('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'privStaticProperty', 'bar');
+
+        $foo = $this->getStaticPropertyValue('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'protStaticProperty');
+        $bar = $this->getStaticPropertyValue('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'privStaticProperty');
+
+        $this->assertEquals('foo', $foo);
+        $this->assertEquals('bar', $bar);
+    }
+
+    /**
      * Test invoking private and protected methods.
      */
     public function testInvokeMethod()
@@ -68,6 +83,30 @@ class AccessorTest extends TestCase
         $this->assertEquals(
             'foo:bar',
             $this->invokeMethod($this->sut, 'privWithArgs', ['foo', 'bar'])
+        );
+    }
+
+    /**
+     * Test invoking private and protected static methods.
+     */
+    public function testInvokeStaticMethod()
+    {
+        $this->assertTrue(
+            $this->invokeStaticMethod('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'protStaticNoArgs')
+        );
+
+        $this->assertTrue(
+            $this->invokeStaticMethod('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'privStaticNoArgs')
+        );
+
+        $this->assertEquals(
+            'foo:bar',
+            $this->invokeStaticMethod('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'protStaticWithArgs', ['foo', 'bar'])
+        );
+
+        $this->assertEquals(
+            'foo:bar',
+            $this->invokeStaticMethod('Rootwork\\Test\\PHPUnit\\Helper\\Fixture', 'privStaticWithArgs', ['foo', 'bar'])
         );
     }
 }

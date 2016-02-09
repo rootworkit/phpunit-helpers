@@ -63,4 +63,52 @@ trait Accessor
 
         return $method->invokeArgs($object, $args);
     }
+
+    /**
+     * Set the value of a non-public static property.
+     *
+     * @param string $class
+     * @param string $name
+     * @param mixed $value
+     */
+    public function setStaticPropertyValue($class, $name, $value)
+    {
+        $property = new ReflectionProperty($class, $name);
+        $property->setAccessible(true);
+        $property->setValue(null, $value);
+    }
+
+    /**
+     * Get the value of a non-public static property.
+     *
+     * @param string $class
+     * @param string $name
+     * @return mixed
+     */
+    public function getStaticPropertyValue($class, $name)
+    {
+        $property = new ReflectionProperty($class, $name);
+        $property->setAccessible(true);
+        return $property->getValue($class);
+    }
+
+    /**
+     * Invoke a non-public static method
+     *
+     * @param string $class
+     * @param string $name
+     * @param array  $args
+     * @return mixed
+     */
+    public function invokeStaticMethod($class, $name, array $args = [])
+    {
+        $method = new ReflectionMethod($class, $name);
+        $method->setAccessible(true);
+
+        if (empty($args)) {
+            return $method->invoke(null);
+        }
+
+        return $method->invokeArgs(null, $args);
+    }
 }
