@@ -2,7 +2,7 @@
 Helper traits for PHPUnit
 
 _"You can touch your privates and you can touch your friends' privates
-but you can't touch your children's privates... unless they're protected."_
+but you can't touch your parents' privates... unless they're protected."_
 -Unknown
 
 ## Installation
